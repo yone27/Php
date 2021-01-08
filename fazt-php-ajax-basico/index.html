@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="sendRequest()">
+		Envia una peticion ajax
+	</button>
+	
+	<h1 id="title"></h1>
+<script>
+	function sendRequest()
+	{
+	    /*Recuperamos el dato del backend*/
+	    
+//	   Permite hacer traer peticiones de paginas web
+	   var theObject = new XMLHttpRequest();
+//	   Setting de mi obj
+	   theObject.open('POST','backend.php', true);
+//	    Setting cabecera
+		theObject.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//		Recibiendo datos del servidor
+		theObject.onreadystatechange = function () {
+			console.log(theObject.responseText);
+            document.getElementById('title').innerHTML = theObject.responseText;
+        }
+//	   Enviando mi obj
+	   theObject.send('username=Yone');
+    }
+</script>
+</body>
+</html>
